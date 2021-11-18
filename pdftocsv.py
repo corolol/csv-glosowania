@@ -5,8 +5,10 @@ import os
 # tabula.convert_into("dokument1.pdf", "dokument1.csv", output_format="csv", pages='all')
 # print(df)
 
-for x in os.listdir("."): 
+for x in os.listdir("pdfs"): 
     if (x.endswith(".pdf")):
-        os.system("mv '" + x + "' pdfs")
+        df = tabula.read_pdf("pdfs/" + x, pages='all')[0]
+        tabula.convert_into("pdfs/" + x, "csv/" + x.split(".pdf")[0] + ".csv", output_format="csv", pages='all')
+        # os.system("mv '" + x + "' pdfs")
         # print(x)
         # print(df)
